@@ -12,7 +12,9 @@ services:
       - key: API_HOST
         value: 0.0.0.0
       - key: CORS_ORIGINS
-        value: https://*.vercel.app,http://localhost:5173
+        value: https://qwerty-coral-five.vercel.app,http://localhost:5173
+      - key: CORS_ORIGIN_REGEX
+        value: https://qwerty-.*-titanskings-projects\.vercel\.app
       - key: CACHE_TTL_SECONDS
         value: 3600
       - key: CACHE_ENABLED

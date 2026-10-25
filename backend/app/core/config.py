@@ -29,6 +29,9 @@ class Settings(BaseSettings):
 
     # CORS (comma-separated string in .env)
     cors_origins: str = Field(default="http://localhost:5173", alias="CORS_ORIGINS")
+    # Optional regex for dynamic origins (e.g. Vercel preview deployments);
+    # wildcards are not supported in CORS_ORIGINS.
+    cors_origin_regex: str | None = Field(default=None, alias="CORS_ORIGIN_REGEX")
 
     @property
     def cors_origins_list(self) -> List[str]:
