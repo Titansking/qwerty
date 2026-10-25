@@ -38,22 +38,24 @@ export function ForecastChart({ data }: ForecastChartProps) {
     }),
     forecast: d.forecast_mw,
     actual: d.actual_mw,
+    error: d.error_mw,
   }));
 
   const customTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
-      const point = payload[0].payload as ForecastActualPair & { name: string };
+      // payload rows are chartData entries, not raw ForecastActualPair objects
+      const point = payload[0].payload as (typeof chartData)[number];
       return (
         <div className="bg-white p-3 border border-slate-200 rounded-lg shadow-lg">
           <p className="text-xs font-bold text-slate-700">{point.name}</p>
           <p className="text-sm text-slate-600">
-            Forecast: <span className="font-mono">{point.forecast_mw.toLocaleString()}</span> MW
+            Forecast: <span className="font-mono">{point.forecast.toLocaleString()}</span> MW
           </p>
           <p className="text-sm text-slate-600">
-            Actual: <span className="font-mono">{point.actual_mw.toLocaleString()}</span> MW
+            Actual: <span className="font-mono">{point.actual.toLocaleString()}</span> MW
           </p>
           <p className="text-sm font-medium">
-            Error:{point.error_mw >= 0 ? " +" : ""}{point.error_mw.toLocaleString()} MW
+            Error:{point.error >= 0 ? " +" : " "}{point.error.toLocaleString()} MW
           </p>
         </div>
       );
