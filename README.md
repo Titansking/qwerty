@@ -170,6 +170,14 @@ python3 -m uvicorn app.main:app
 Query parameters: `start_date` (YYYY-MM-DD), `end_date` (YYYY-MM-DD),
 `force_refresh` (boolean, actuals/forecasts only).
 
+## Live Application
+
+**Backend API (Render):** https://qwerty-5yk3.onrender.com
+
+**Health Check:** https://qwerty-5yk3.onrender.com/api/health
+
+**Frontend (Vercel):** [YOUR VERCEL LIVE LINK HERE]
+
 ## Accuracy Metrics Explained
 
 - **MAE (Mean Absolute Error)**: Average magnitude of forecast errors in MW.
@@ -180,22 +188,18 @@ Query parameters: `start_date` (YYYY-MM-DD), `end_date` (YYYY-MM-DD),
 
 ## Deployment
 
-### Backend (Heroku)
+### Backend (Render)
 
-```bash
-cd backend
-heroku create gridbrick-backend
-heroku config:set CORS_ORIGINS="https://your-frontend.vercel.app"
-git push heroku main
-heroku ps:scale web=1
-```
+Backend is deployed on Render at: https://qwerty-5yk3.onrender.com
+
+To redeploy from this repository, connect your GitHub repo to Render and use the `render.yaml` configuration file at the project root.
 
 ### Frontend (Vercel)
 
 ```bash
 cd frontend
 vercel --prod
-# Set environment variable: VITE_API_BASE_URL=https://your-backend.herokuapp.com
+# Set environment variable: VITE_API_BASE_URL=https://qwerty-5yk3.onrender.com
 ```
 
 ### Docker (any platform)
