@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: gridbrick-backend
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: ELEXON_API_BASE_URL
+        value: https://data.elexon.co.uk/bmrs/api/v1
+      - key: ELEXON_API_TIMEOUT
+        value: 30
+      - key: API_HOST
+        value: 0.0.0.0
+      - key: CORS_ORIGINS
+        value: https://*.vercel.app,http://localhost:5173
+      - key: CACHE_TTL_SECONDS
+        value: 3600
+      - key: CACHE_ENABLED
+        value: true
+      - key: ANALYSIS_YEAR
+        value: 2026
+      - key: ANALYSIS_MONTH
+        value: 1
+      - key: WIND_FUEL_TYPE
+        value: WIND
+      - key: LOG_LEVEL
+        value: INFO
